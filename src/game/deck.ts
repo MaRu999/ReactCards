@@ -1,7 +1,8 @@
 import card from "./card";
+import {action, observable} from "mobx";
 
 export default class deck {
-    cards: card[] = [];
+    @observable cards: card[] = [];
     currentIndex: number;
     suiteKeys: string[] = ["♥", "♦", "♠", "♣"]
     usedCards: card[] = [];
@@ -11,7 +12,7 @@ export default class deck {
         this.shuffleDeck();
     }
 
-    createNewDeck(): void {
+    @action createNewDeck(): void {
         let j = 0;
         this.cards = [];
         this.usedCards = [];
@@ -26,7 +27,7 @@ export default class deck {
         this.currentIndex = this.cards.length - 1;
     }
 
-    shuffleDeck(): void {
+    @action shuffleDeck(): void {
         for (let i = this.cards.length - 1; i > 0; i--) {
             let j = Math.floor(Math.random() * (i + 1));
             let temp = this.cards[i];
@@ -35,7 +36,7 @@ export default class deck {
         }
     }
 
-    drawCard(): card {
+    @action drawCard(): card {
         this.usedCards.push(this.getCurrentCard());
         this.currentIndex -= 1;
         return this.cards.pop();
@@ -45,12 +46,12 @@ export default class deck {
         return this.cards.length === 1;
     }
 
-    betHigh(): boolean {
+    @action betHigh(): boolean {
         const card = this.drawCard();
         return card.value < this.cards[this.currentIndex].value;
     }
 
-    betLow(): boolean {
+    @action betLow(): boolean {
         const card = this.drawCard();
         return card.value > this.cards[this.currentIndex].value;
     }

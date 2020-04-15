@@ -1,9 +1,10 @@
 import deck from "./deck";
 import card from "./card";
+import {action, observable} from "mobx";
 
 export default class game {
-    score: number = 0;
-    usedDeck: deck = new deck();
+    @observable score: number = 0;
+    @observable usedDeck: deck = new deck();
 
     constructor() {
         this.startGame();
@@ -13,7 +14,7 @@ export default class game {
         this.startGame();
     }
 
-    bet(highBet: boolean): void {
+    @action bet(highBet: boolean): void {
         if (highBet) {
             if (this.usedDeck.betHigh()) {
                 this.score += 1;
@@ -29,10 +30,12 @@ export default class game {
         return this.usedDeck.getCurrentCard();
     }
 
-    startGame(): void {
+    @action startGame(): void {
         this.score = 0;
         this.usedDeck = new deck();
         this.usedDeck.createNewDeck();
         this.usedDeck.shuffleDeck();
     }
+
+
 }
