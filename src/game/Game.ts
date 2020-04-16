@@ -1,10 +1,10 @@
-import deck from "./deck";
-import card from "./card";
 import {action, observable} from "mobx";
+import Deck from "./Deck";
+import Card from "./Card";
 
-export default class game {
-    @observable score: number = 0;
-    @observable usedDeck: deck = new deck();
+export default class Game {
+    @observable score = 0;
+    @observable usedDeck: Deck = new Deck();
 
     constructor() {
         this.startGame();
@@ -26,13 +26,13 @@ export default class game {
         }
     }
 
-    getCurrentCardInDeck(): card {
+    getCurrentCardInDeck(): Card {
         return this.usedDeck.getCurrentCard();
     }
 
     @action startGame(): void {
         this.score = 0;
-        this.usedDeck = new deck();
+        this.usedDeck = new Deck();
         this.usedDeck.createNewDeck();
         this.usedDeck.shuffleDeck();
     }

@@ -1,7 +1,7 @@
-import card from "../game/card";
 import * as React from "react";
 import styled from "styled-components";
 import {string} from "prop-types";
+import Card from "../game/Card";
 
 const CardDiv = styled.div`
 color: ${(props: MyProps): string => (
@@ -28,9 +28,9 @@ export const CardComponent = (props: MyCardProps): JSX.Element => {
 };
 
 type MyCardProps = {
-    card: card;
+    card: Card;
 }
 
 CardComponent.propTypes = {
-    card: card
+    card: Card
 }

@@ -1,5 +1,5 @@
 
-export default class card {
+export default class Card {
     value: number;
     numberLiteral: string;
     suite: string;
@@ -7,7 +7,7 @@ export default class card {
 
     constructor(value: number, suiteString: string) {
         this.value = value;
-        this.numberLiteral = card.getLiteral(value);
+        this.numberLiteral = Card.getLiteral(value);
         this.suite = suiteString;
         if (this.suite === "♥" || this.suite === "♦") {
             this.color = "red";
