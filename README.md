@@ -12,3 +12,7 @@ In the current implementation, cards with the same value give no points (since t
 ## The used cards
 Since I was not sure whether simply making sure each card is only played once is enough for the instruction "Keep track of the already played cards of the deck", 
 I added an array to the deck that keeps track of the already used cards. It is only there because I was not sure whether that was meant or not.
+
+## Logging
+The mobx-autorun is used to log the current score, the remaining cards and the used cards. 
+Please note that the first card displayed is counted as used right away, so the remaining cards will start at 51 and the used cards will start at 1.
